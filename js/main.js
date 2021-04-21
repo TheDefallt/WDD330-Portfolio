@@ -1,7 +1,7 @@
 function buildTOC(){
     const links = [
         {
-            label: "Week1 notes",
+            label: "Week 1 Notes",
             url: "week1/index.html"
         }
     ];
