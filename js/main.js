@@ -1,6 +1,8 @@
-document.onload = buildTOC;
+
 
 function buildTOC(){
+    alert("Function running");
+
     const links = [
         {
             label: "Week1 notes",
@@ -16,3 +18,5 @@ function buildTOC(){
         ol.append(html);
     });
 }
+
+document.addEventListener("DOMContentLoaded", buildTOC);
