@@ -7,6 +7,7 @@ function buildTOC(){
     ];
 
     var ol = document.getElementById('tableofcontents');
+    console.log(ol.tagName);
 
     links.forEach(element => {
         var html = '<li><a href="${element.url}">${element.label}</a></li>';
