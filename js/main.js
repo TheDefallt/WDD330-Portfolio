@@ -1,3 +1,5 @@
+document.onload = buildTOC;
+
 function buildTOC(){
     const links = [
         {
@@ -14,5 +16,3 @@ function buildTOC(){
         ol.append(html);
     });
 }
-
-buildTOC();
