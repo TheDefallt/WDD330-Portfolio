@@ -12,7 +12,7 @@ function buildTOC(){
     links.forEach(element => {
         
         var a = document.createElement('a');
-        a.appendChild(element.label);
+        a.append(element.label);
         a.href = element.url;
 
         var li = document.createElement('li');
