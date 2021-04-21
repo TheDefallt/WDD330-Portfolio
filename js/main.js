@@ -1,8 +1,4 @@
-
-
 function buildTOC(){
-    alert("Function running");
-
     const links = [
         {
             label: "Week1 notes",
@@ -14,7 +10,7 @@ function buildTOC(){
     console.log(ol.tagName);
 
     links.forEach(element => {
-        var html = '<li><a href="${element.url}">${element.label}</a></li>';
+        var html = <li><a href="${element.url}">${element.label}</a></li>;
         ol.append(html);
     });
 }
