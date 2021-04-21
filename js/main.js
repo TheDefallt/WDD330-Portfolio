@@ -10,8 +10,15 @@ function buildTOC(){
     console.log(ol.tagName);
 
     links.forEach(element => {
-        var html = <li><a href="${element.url}">${element.label}</a></li>;
-        ol.append(html);
+        
+        var a = document.createElement('a');
+        a.appendChild(element.label);
+        a.href = element.url;
+
+        var li = document.createElement('li');
+        li.appendChild(a);
+
+        ol.appendChild(li);
     });
 }
 
