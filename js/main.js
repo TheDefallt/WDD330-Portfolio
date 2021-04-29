@@ -3,7 +3,12 @@ function buildTOC(){
         {
             label: "Week 1",
             url: "week1/index.html"
+        },
+        {
+            label: "Week 2",
+            url: "week2/index.html"
         }
+
     ];
 
     var ol = document.getElementById('tableofcontents');
