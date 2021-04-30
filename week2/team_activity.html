@@ -9,13 +9,61 @@
         function getInput(){
             document.getElementById("divID").innerHTML = document.getElementById("inputID").value;
         }
+
+        function number2(number){
+            let answer = 0;
+            
+            if(isNaN(number) === false){
+                for(i = 1; i <= number; i++){
+                    answer += i;
+                }
+                console.log(answer);
+            }
+
+            return document.getElementById('divID').innerHTML = answer;
+        }
+
+        function addingMachine(intParse){
+            
+            intParse(x,y);
+            return document.getElementById('addingAnswer').innerHTML = x + y;
+        }
+
+        const divide = (x,y) => {
+            return document.getElementById('divID').innerHTML = x / y;
+        }
+
+        const multiply = function(x,y){
+            return document.getElementById('divID').innerHTML = x * y;
+        }
+
+        function intParse(x,y){
+            x = parseInt(x);
+            y = parseInt(y);
+
+            return x,y;
+        }
+
     </script>
 </head>
 <body>
     
     <input type="text" id="inputID">
-    <button onclick="getInput()">Get Button</button>
+    
+    <button onclick="addingMachine(inputID.value, inputID2.value)">+</button>
+    <button onclick="divide(inputID.value, inputID2.value)">/</button>
+    <button onclick="multiply(inputID.value, inputID2.value)">*</button>
+    
+    <input type="text" id="inputID2">
+    
+
+    <button onclick="number2(inputID.value)">Get Button</button>
+
     <div id="divID"></div>
+
+    <div id="addingAnswer"></div>
+
+    <button onclick="number2(inputID.value)">Get Button</button>
 
 </body>
 </html>
