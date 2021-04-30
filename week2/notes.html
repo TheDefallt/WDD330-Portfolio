@@ -10,7 +10,39 @@
 
     <ul>
         <li>
-        
+            Callbacks work like a domino effect
+        </li>
+        <li>
+            Callback example:<br>
+            function getInput(id){<br>
+                if (document.getElementById(id).value !== NaN){<br>
+                    return parseFloat(document.getElementById(id).value);<br>
+                } else {<br>
+                    return 0;<br>
+                }<br>
+            }<br>
+
+            function divideInHalf(number){<br>
+                return number / 2;<br>
+            }<br>
+
+            function doubleNumber(number){<br>
+                return number * 2;<br>
+            }<br>
+
+            function writeResult(value){<br>
+                return document.getElementById('anwer').innerHTML = value;<br>
+            }<br>
+
+            function doMathFunction(statement){<br>
+                const result = statement(getInput('input1'));<br>
+
+                writeResult(result);<br>
+            }<br>
+
+            Example OnClick:<br>
+            Halfing button on click is set to doMathFunction(divideInHalf)<br>
+            Double button is set to doMathFunction(doubleNumber)<br>
         </li>
     </ul>
 </body>
