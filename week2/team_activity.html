@@ -23,10 +23,8 @@
             return document.getElementById('divID').innerHTML = answer;
         }
 
-        function addingMachine(intParse){
-            
-            intParse(x,y);
-            return document.getElementById('addingAnswer').innerHTML = x + y;
+        function addingMachine(x,y){
+            return document.getElementById('divID').innerHTML = x + y;
         }
 
         const divide = (x,y) => {
@@ -37,11 +35,11 @@
             return document.getElementById('divID').innerHTML = x * y;
         }
 
-        function intParse(x,y){
-            x = parseInt(x);
-            y = parseInt(y);
+        function parseNumbers (mathFunction){
+            let num1 = parseInt(document.getElementById("inputID").value);
+            let num2 = parseInt(document.getElementById("inputID2").value);
 
-            return x,y;
+            mathFunction(num1, num2);
         }
 
     </script>
@@ -50,20 +48,15 @@
     
     <input type="text" id="inputID">
     
-    <button onclick="addingMachine(inputID.value, inputID2.value)">+</button>
-    <button onclick="divide(inputID.value, inputID2.value)">/</button>
-    <button onclick="multiply(inputID.value, inputID2.value)">*</button>
+    <button onclick="parseNumbers(addingMachine)">+</button>
+    <button onclick="parseNumbers(divide)">/</button>
+    <button onclick="parseNumbers(multiply)">*</button>
     
     <input type="text" id="inputID2">
     
-
     <button onclick="number2(inputID.value)">Get Button</button>
 
     <div id="divID"></div>
-
-    <div id="addingAnswer"></div>
-
-    <button onclick="number2(inputID.value)">Get Button</button>
 
 </body>
 </html>
