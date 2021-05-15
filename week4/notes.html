@@ -10,9 +10,48 @@
 
     <ul>
         <li>
-            Objects are a self-contained set of related values and functions
+            Using WAI-AIRA labels keeps forms keyboard accessible.
         </li>
-        
+        <li>
+            Forms have their own DOM properties. document.forms returns a collection
+            of all the forms on a page. You have to use index numbers to access specific
+            forms or refer to them by the name set in the name attribute of the form.
+
+            document.forms[0];
+
+            document.getElementsByTagname('form')[0];
+
+            document.forms.search; -This one requires that the string "search" is set
+            in the HTML forms name attribute.
+        </li>
+        <li>
+            form.reset() will reset the form controls back to their original settings
+        </li>
+        <li>
+            New objects can be created without parenthesis if no default arguments are needed
+            for the construction.
+        </li>
+        <li>
+            Static methods in classes are called by the class, and not the specific instances.
+            Statics cannot be called by specific instances.
+        </li>
+        <li>
+            Prototypes are used to add new properties and methods after the class has been declared.
+            They apply to all instances of the class.
+        </li>
+        <li>
+            Monkey-patching is the practice of adding more methods to the built in JavaScript objects like
+            Number, String, or Array to gain additional functionality. Prototype is the way to do this.
+        </li>
+        <li>
+            Libraries are addtional packages of code that add additional functionality to JavaScript.
+            jQuery, Underscore and Lodash are examples of these.
+        </li>
+        <li>
+            Libraries are useful for quickly gaining functionalty that has been throughly tested by 
+            many other people so it is very reliable. On the downside you have to include the libraries along
+            with your code so your project will increase in size.
+        </li>
     </ul>
 </body>
 </html>
