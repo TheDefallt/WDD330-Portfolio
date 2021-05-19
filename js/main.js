@@ -19,7 +19,6 @@ function buildTOC(){
     ];
 
     var ol = document.getElementById('tableofcontents');
-    console.log(ol.tagName);
 
     links.forEach(element => {
         
