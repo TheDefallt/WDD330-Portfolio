@@ -1,0 +1,30 @@
+.app-section {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+    min-height: 25vh;
+    position: relative;
+}
+
+.app-section h1 {
+    text-align: center;
+}
+
+.add-form{
+    position: absolute;
+    bottom: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    display: flex;
+}
+
+p {
+    margin: 0;
+}

@@ -1,8 +1,8 @@
 //Array for storing ToDo items
-const toDoList = [];
+const toDoListData = [];
 
 //Grab the ul that stores the todo list
-const toDoForm = document.forms['toDoList'];
+const toDoList = document.getElementById('toDoList');
 
 //Grab adding form
 const addForm = document.forms['addToDo'];
@@ -19,28 +19,35 @@ function addToDo(event){
     const todoItem = new ToDo(
         addForm.elements.content.value
         );
-    toDoList.push(todoItem);
+        toDoListData.push(todoItem);
 
-    buildToDoList();
+        renderNewListItem(todoItem);
     
     addForm.reset();
     event.preventDefault();
 }
 
-function buildToDoList(){
-    for(const todo of toDoList){
-        let toDoItem = document.createElement('li');
+function renderNewListItem(toDoItemData){
+    let toDoItem = document.createElement('li');
 
-        let toDoCheck = document.createElement('input');
-        toDoCheck.setAttribute('type', 'checkbox');
+    let toDoCheck = document.createElement('input');
+    toDoCheck.setAttribute('type', 'checkbox');
 
-        let toDoContent = document.createElement('p');
-        toDoContent.append(todo.content);
+    let toDoContent = document.createElement('p');
+    toDoContent.append(toDoItemData.content);
 
-        todoItem.appendChild(toDoCheck, toDoContent);
+    let deleteForm = document.createElement('form');
+    let deleteButton = document.createElement('button');
+    deleteButton.setAttribute('type', 'submit');
+    deleteForm.appendChild(deleteButton);
 
-        toDoForm.appendChild(todoItem);
-    }
+    toDoItem.appendChild(toDoCheck);
+    toDoItem.appendChild(toDoContent);
+    toDoItem.appendChild(deleteForm);
+
+    console.log(toDoItem);
+
+    toDoList.appendChild(toDoItem);
 }
 
 //Array for tasks to be stored in + functions to write and read them from file
