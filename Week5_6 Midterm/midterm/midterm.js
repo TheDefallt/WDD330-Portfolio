@@ -15,7 +15,6 @@ export default class ToDo {
                 completed: false
             }
         );
-        
 
         this.renderToDoList();
     }
@@ -25,11 +24,9 @@ export default class ToDo {
         this.parentElement.innerHTML = '';
 
         toDoItems.forEach(toDo => {
-            console.log(toDo.content);
             let item = this.renderToDoItem(toDo);
             this.parentElement.appendChild(item);
         });
-        console.log("Render");
     }
 
     renderToDoItem(todo){
@@ -39,11 +36,13 @@ export default class ToDo {
             <p>${todo.content}</p>
             <form>
                 <input type="hidden" value="${todo.id}">
-                <button type="submit"></button>
+                <button type="submit">X</button>
             </form>
         `;
-        console.log(item);
         return item;
     }
+
+    //Add delete logic, eventListeners need to be added to Delete Buttons
+    //Add completed logic, eventListenser need to be added to checkboxes
 
 }

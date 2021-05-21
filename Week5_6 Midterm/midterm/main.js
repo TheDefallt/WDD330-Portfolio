@@ -11,6 +11,7 @@ const addToDoContent = addForm.elements.content;
 addForm.addEventListener ('submit', (event) => {
     event.preventDefault();
     toDo.addToDo(addToDoContent.value);
+    addForm.reset();
 });
 
 
