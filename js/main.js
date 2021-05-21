@@ -18,7 +18,7 @@ function buildTOC(){
         },
         {
             label: "Week 5",
-            url: "week5/index.html"
+            url: "week5_6 Midterm/index.html"
         }
     ];
 
