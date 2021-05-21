@@ -1,28 +1,63 @@
 .app-section {
     margin-left: auto;
     margin-right: auto;
-    width: 40vw;
+    width: 35vw;
     min-height: 25vh;
     position: relative;
+    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .app-section h1 {
     text-align: center;
+    font-family: Haettenschweiler, sans-serif;
+    font-size: 42px;
 }
 
 .add-form{
     position: absolute;
-    bottom: 0;
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-ul {
-    list-style-type: none;
-}
-
-ul li {
+    bottom: 2px;
+    width: 90%;
+    height: 10%;
     display: flex;
+    text-align: center;
+}
+
+.add-form input{
+    flex-grow: 3;
+}
+
+.add-form button {
+    flex-grow: 1;
+}
+
+.toDoItem {
+    display: flex;
+    padding: 0 5px;
+    align-items: center;
+}
+
+.toDoItem input{
+    height: 35px;
+    width: 35px;
+    margin: 0;
+}
+
+.toDoItem p {
+    flex-grow: 2;
+    padding-left: 20px;
+    font-size: 25px;
+}
+
+.toDoItem form button {
+    height: 35px;
+    width: 35px;
+    font-size: 25px;
+}
+
+.toDoList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 p {

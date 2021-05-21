@@ -31,6 +31,7 @@ export default class ToDo {
 
     renderToDoItem(todo){
         const item = document.createElement('li');
+        item.setAttribute('class', 'toDoItem');
         item.innerHTML = `
             <input type="checkbox">
             <p>${todo.content}</p>
