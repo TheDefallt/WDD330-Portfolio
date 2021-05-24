@@ -1,23 +1,37 @@
+:root {
+    --primary-dark: #183251;
+    --primary-light: #C4CBD8;
+    --primary-light-contrast: #dce6f6;
+    --text-hover: #C8C4C4;
+    --box-shadow-blue: #597F97;
+    --box-shadow-grey: #6C747C;
+}
+
+body {
+    background-color: var(--primary-light);
+}
+
 .app-section {
-    margin-left: auto;
-    margin-right: auto;
-    width: 35vw;
+    background-color: var(--primary-light-contrast);
     min-height: 25vh;
     position: relative;
-    box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 3px 1px 7px 3px var(--box-shadow-blue);
 }
 
 .app-section h1 {
+    background-color: var(--primary-dark);
+    color: var(--primary-light-contrast);
+    margin: 0;
+    padding: 15px 0 15px 0;
     text-align: center;
     font-family: Haettenschweiler, sans-serif;
     font-size: 42px;
 }
 
 .add-form{
-    position: absolute;
-    bottom: 2px;
-    width: 90%;
-    height: 10%;
+    /* Look at different display options. Try to get form
+    to say on the bottom with a 5px bottom margin. */
+    padding: 0 5px;
     display: flex;
     text-align: center;
 }
@@ -55,9 +69,9 @@
 }
 
 .toDoList {
-    list-style-type: none;
-    margin: 0;
     padding: 0;
+    list-style-type: none;
+    margin: 10px 0;
 }
 
 p {
