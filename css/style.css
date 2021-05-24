@@ -7,6 +7,8 @@
     --box-shadow-grey: #6C747C;
 }
 
+/* Make this responsive */
+
 body {
     background-color: var(--primary-light);
     margin: 0;
