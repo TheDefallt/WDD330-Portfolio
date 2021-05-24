@@ -1,4 +1,4 @@
-function buildTOC(){
+//function buildTOC(){
     const links = [
         {
             label: "Week 1",
@@ -35,6 +35,6 @@ function buildTOC(){
 
         ol.appendChild(li);
     });
-}
+//}
 
-document.addEventListener("DOMContentLoaded", buildTOC);
+//document.addEventListener("DOMContentLoaded", buildTOC);
