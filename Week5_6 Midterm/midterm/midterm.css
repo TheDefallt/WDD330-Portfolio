@@ -7,8 +7,6 @@
     --box-shadow-grey: #6C747C;
 }
 
-/* Make this responsive */
-
 body {
     background-color: var(--primary-light);
 }
@@ -31,8 +29,6 @@ body {
 }
 
 .add-form{
-    /* Look at different display options. Try to get form
-    to say on the bottom with a 5px bottom margin. */
     padding: 0 5px;
     margin-top: 25px;
     height: 35px;

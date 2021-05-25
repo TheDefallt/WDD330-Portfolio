@@ -7,7 +7,6 @@ export default class ToDo {
     }
 
     addToDo(content){
-
         toDoItems.push(
             {
                 id: Date.now(),
@@ -20,6 +19,8 @@ export default class ToDo {
     }
 
     renderToDoList(){
+        //Add strikethrough to completed items.
+
         //Clear HTML then re-render
         this.parentElement.innerHTML = '';
 
@@ -29,11 +30,12 @@ export default class ToDo {
         });
     }
 
-    renderToDoItem(todo){
+    renderToDoItem(todo) {
         const item = document.createElement('li');
         item.setAttribute('class', 'toDoItem');
+
         item.innerHTML = `
-            <input type="checkbox">
+            <input type="checkbox"/>
             <p>${todo.content}</p>
             <form>
                 <input type="hidden" value="${todo.id}">
@@ -41,6 +43,16 @@ export default class ToDo {
             </form>
         `;
         return item;
+    }
+
+    toggleCompleteItem(id) {
+        completedForm = document.
+
+        toDoItems.find(item => {
+            if (item.id === id){
+                console.log(todo.content);
+            }
+        });
     }
 
     //Add delete logic, eventListeners need to be added to Delete Buttons

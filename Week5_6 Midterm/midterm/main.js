@@ -5,14 +5,19 @@ import ToDo from './midterm.js';
 const toDo = new ToDo('toDoList');
 
 //Grab adding form
-const addForm = document.forms['addToDo']
+const addForm = document.forms['addToDo'];
 const addToDoContent = addForm.elements.content;
+
+const itemForms = document.forms['toDoItem'];
+console.log(itemForms);
 
 addForm.addEventListener ('submit', (event) => {
     event.preventDefault();
     toDo.addToDo(addToDoContent.value);
     addForm.reset();
 });
+
+
 
 
 
