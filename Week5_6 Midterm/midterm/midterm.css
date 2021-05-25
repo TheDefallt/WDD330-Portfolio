@@ -15,7 +15,7 @@ body {
 
 .app-section {
     background-color: var(--primary-light-contrast);
-    min-height: 25vh;
+    min-height: 10vh;
     position: relative;
     box-shadow: 3px 1px 7px 3px var(--box-shadow-blue);
 }
@@ -34,6 +34,8 @@ body {
     /* Look at different display options. Try to get form
     to say on the bottom with a 5px bottom margin. */
     padding: 0 5px;
+    margin-top: 25px;
+    height: 35px;
     display: flex;
     text-align: center;
 }
@@ -48,7 +50,7 @@ body {
 
 .toDoItem {
     display: flex;
-    padding: 0 5px;
+    padding: 0 5px 10px 5px;
     align-items: center;
 }
 
@@ -73,9 +75,27 @@ body {
 .toDoList {
     padding: 0;
     list-style-type: none;
-    margin: 10px 0;
+    margin: 0;
+}
+
+.toDoForm {
+    padding: 15px;
 }
 
 p {
     margin: 0;
+}
+
+/* Desktop formatting */
+@media only screen and (min-width: 750px){
+
+    .app-section {
+        margin: 0 25vw;
+        min-height: 10vh;
+    }
+
+    .add-form {
+        padding: 0 35vw;
+    }
+
 }
