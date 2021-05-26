@@ -71,6 +71,18 @@ export default class ToDo {
                 });
                 break;
         }
+
+        let remainingAmount = toDoItems.filter(toDo => toDo.completed === false).length;
+        let totalLabel = document.getElementById('total');
+
+        if (remainingAmount === 1) {
+            totalLabel.textContent = remainingAmount + ' task left';
+        } else if (remainingAmount > 1) {
+            totalLabel.textContent = remainingAmount + ' tasks left';
+        } else {
+            totalLabel.textContent = 'All tasks completed!';
+        }
+
     }
 
     renderToDoItem(todo) {
