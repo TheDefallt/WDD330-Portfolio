@@ -21,7 +21,6 @@ export default class ToDo {
     toggleCompleteItem(id){
         toDoItems.find(item => {
             if (item.id === id){
-                console.log(item.completed);
                 item.completed = !item.completed;
             }
         });
@@ -30,7 +29,17 @@ export default class ToDo {
     }
 
     deleteItem(id) {
-        console.log(id);
+        let index = 0;
+        
+        toDoItems.find(item => {
+            if (item.id === id){
+                index = toDoItems.indexOf(item);
+            }
+        });
+
+        toDoItems.splice(index, 1);
+
+        this.renderToDoList();
     }
 
     renderToDoList(){
@@ -69,7 +78,7 @@ export default class ToDo {
         //Create the button to delete the todo item
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'X';
-        deleteBtn.setAttribute('type', 'submit');
+        deleteBtn.setAttribute('name', 'submit');
 
         // Create a delete for to handle the deletion and append the submit button into it
         const deleteForm = document.createElement('form');
