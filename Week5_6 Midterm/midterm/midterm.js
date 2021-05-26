@@ -15,7 +15,7 @@ export default class ToDo {
             }
         );
 
-        this.renderToDoList();
+        this.renderToDoList('all');
     }
 
     toggleCompleteItem(id){
@@ -24,8 +24,8 @@ export default class ToDo {
                 item.completed = !item.completed;
             }
         });
-
-        this.renderToDoList();
+        console.log(toDoItems);
+        this.renderToDoList('all');
     }
 
     deleteItem(id) {
@@ -39,17 +39,38 @@ export default class ToDo {
 
         toDoItems.splice(index, 1);
 
-        this.renderToDoList();
+        this.renderToDoList('all');
     }
 
-    renderToDoList(){
+    renderToDoList(criteria){
         //Clear HTML then re-render
         this.parentElement.innerHTML = '';
 
-        toDoItems.forEach(toDo => {
-            let item = this.renderToDoItem(toDo);
-            this.parentElement.appendChild(item);
-        });
+        //Switch case that triggers different page renders based on while filter button is clicked
+        switch (criteria){
+            case 'all':
+                toDoItems.forEach(toDo => {
+                    let item = this.renderToDoItem(toDo);
+                    this.parentElement.appendChild(item);
+                });
+                break;
+            case 'active':
+                toDoItems.filter(toDo => 
+                    toDo.completed === false
+                ).forEach(element => {
+                    let item = this.renderToDoItem(element);
+                    this.parentElement.appendChild(item);
+                });
+                break;
+            case 'completed':
+                toDoItems.filter(toDo => 
+                    toDo.completed === true
+                ).forEach(element => {
+                    let item = this.renderToDoItem(element);
+                    this.parentElement.appendChild(item);
+                });
+                break;
+        }
     }
 
     renderToDoItem(todo) {
@@ -96,7 +117,6 @@ export default class ToDo {
         return item;
     }
  
-    //Add delete logic, eventListeners need to be added to Delete Buttons
-    //Add completed logic, eventListenser need to be added to checkboxes
+    //Add filtering logic either flags or different rendering functions?
 
 }
