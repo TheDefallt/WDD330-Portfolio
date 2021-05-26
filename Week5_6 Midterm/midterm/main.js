@@ -11,22 +11,10 @@ const addToDoContent = addForm.elements.content;
 addForm.addEventListener ('submit', (event) => {
     event.preventDefault();
     toDo.addToDo(addToDoContent.value);
-    addItemListeners();
     addForm.reset();
 });
 
-function addItemListeners() {
-    let itemInputs = document.forms['toDoForm'].elements;
-
-    itemInputs.forEach(itemInput => {
-        itemInput.addEventListener ('change', (event) => {
-            event.preventDefault();
-            toDo.toggleCompleteItem(itemInput.value)
-        });
-    });
-
-}
-
+//Add the eventlisteners for filtering and totaling here.
 
 //Array for tasks to be stored in + functions to write and read them from file
 

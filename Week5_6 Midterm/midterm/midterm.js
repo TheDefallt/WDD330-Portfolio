@@ -18,19 +18,22 @@ export default class ToDo {
         this.renderToDoList();
     }
 
-    toggleCompleteItem(id) {
-        console.log("Toggled");
-
+    toggleCompleteItem(id){
         toDoItems.find(item => {
             if (item.id === id){
-                console.log(todo.content);
+                console.log(item.completed);
+                item.completed = !item.completed;
             }
         });
+
+        this.renderToDoList();
+    }
+
+    deleteItem(id) {
+        console.log(id);
     }
 
     renderToDoList(){
-        //Add strikethrough to completed items.
-
         //Clear HTML then re-render
         this.parentElement.innerHTML = '';
 
@@ -41,15 +44,46 @@ export default class ToDo {
     }
 
     renderToDoItem(todo) {
+        //Create the list item to be rendered
         const item = document.createElement('li');
         item.setAttribute('class', 'toDoItem');
         item.setAttribute('name', 'toDoItem');
 
-        item.innerHTML = `
-            <input type="submit" value="${todo.id}" name="checkComplete"/>
-            <p>${todo.content}</p>
-            <button type="submit" value="${todo.id}">X</button>
-        `;
+        //Create the checkbox to toggle completion
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.addEventListener('change', () => {
+            this.toggleCompleteItem(todo.id);
+        });
+
+        //Create the paragraph to display the content
+        const content = document.createElement('p');
+        content.textContent = todo.content;
+
+        //Make styling changed if the todo item is completed
+        if (todo.completed === true){
+            checkbox.checked = true;
+            content.setAttribute('class', 'completed');
+        }
+
+        //Create the button to delete the todo item
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'X';
+        deleteBtn.setAttribute('type', 'submit');
+
+        // Create a delete for to handle the deletion and append the submit button into it
+        const deleteForm = document.createElement('form');
+        deleteForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.deleteItem(todo.id);
+        });
+        deleteForm.appendChild(deleteBtn);
+
+        //Append all children
+        item.appendChild(checkbox);
+        item.appendChild(content);
+        item.appendChild(deleteForm);
+       
         return item;
     }
  
