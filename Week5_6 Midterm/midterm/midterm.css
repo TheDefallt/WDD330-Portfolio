@@ -16,6 +16,7 @@ body {
     min-height: 10vh;
     position: relative;
     box-shadow: 3px 1px 7px 3px var(--box-shadow-blue);
+    padding-bottom: 10px;
 }
 
 .app-section h1 {
@@ -84,6 +85,17 @@ p {
 
 .completed {
     text-decoration: line-through;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.filter-section-item {
+    flex-grow: 1;
+    flex-basis: 1vw;
 }
 
 /* Desktop formatting */
