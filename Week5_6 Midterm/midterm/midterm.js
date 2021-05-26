@@ -24,7 +24,6 @@ export default class ToDo {
                 item.completed = !item.completed;
             }
         });
-        console.log(toDoItems);
         this.renderToDoList('all');
     }
 

@@ -37,6 +37,10 @@ body {
     text-align: center;
 }
 
+label {
+    display: none;
+}
+
 .add-form input{
     flex-grow: 3;
 }
