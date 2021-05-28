@@ -18,6 +18,10 @@ const links = [
     {
         label: "Week 5",
         url: "Week5_6%20Midterm/index.html"
+    },
+    {
+        label: "Midterm ToDo List",
+        url: "Week5_6%20Midterm/midterm/index.html"
     }
 ];
 
