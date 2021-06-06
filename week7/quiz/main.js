@@ -64,6 +64,9 @@ const game = {
             const question = `What is ${this.question.name}'s real name?`;
             view.render(view.question,question);
         }
+        else {
+            this.gameOver();
+          }
     },
     check(response){
         const answer = this.question.realName;
