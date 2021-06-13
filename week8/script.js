@@ -25,17 +25,23 @@ function fetchData(fetchURL) {
     list.innerHTML = "";
     if (fetchURL !== null) {
         fetch(fetchURL)
-            .then(response => response.json())
-            .then((data) => {
-                let obj = Object.entries(data.results);
-                pageURLnext = data.next;
-                pageURLprev = data.previous;
-                obj.forEach(item => {
-                    let lItem = document.createElement("li");
-                    lItem.textContent = item[1].name;
-                    list.appendChild(lItem);
-                })
+        .then(response => response.json())
+        .then((data) => {
+            let obj = Object.entries(data.results);
+            pageURLnext = data.next;
+            pageURLprev = data.previous;
+            if(pageURLnext !== null && pageURLnext.search('https:') <0) {
+                pageURLnext = pageURLnext.replace('http:', 'https:')
+            }
+            if(pageURLprev !== null && pageURLprev.search('https:') <0) {
+                pageURLprev = pageURLprev.replace('http:', 'https:')
+            }
+            obj.forEach(item => {
+                let lItem = document.createElement("li");
+                lItem.textContent = item[1].name;
+                list.appendChild(lItem);
             })
+        })
     } else {
         let lItem = document.createElement("li");
         lItem.textContent = "No items found";
