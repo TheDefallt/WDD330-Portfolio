@@ -33,7 +33,7 @@ h1 {
     box-shadow: 3px 1px 7px 3px var(--box-shadow-blue);
     margin-bottom: 15px;
     background-color: var(--primary-light-contrast);
-    animation: buttonScale 0.1s;
+    
 }
 
 .weekItem a{
@@ -43,6 +43,11 @@ h1 {
     justify-content: center;
     font-size: 5vh;
     color: var(--primary-dark);
+}
+
+.weekItem:hover {
+    background-color: white;
+    animation: buttonScale 0.3s forwards;
 }
 
 a {
@@ -72,10 +77,10 @@ a {
 
 @keyframes buttonScale {
     0% {
-        scale: 100%;
+        transform: scale(1.0);
     }
 
     100% {
-        scale: 120%;
+        transform: scale(1.1);
     }
 }
