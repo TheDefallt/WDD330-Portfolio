@@ -33,6 +33,7 @@ h1 {
     box-shadow: 3px 1px 7px 3px var(--box-shadow-blue);
     margin-bottom: 15px;
     background-color: var(--primary-light-contrast);
+    animation: buttonScale 0.1s;
 }
 
 .weekItem a{
@@ -66,5 +67,15 @@ a {
         flex-basis: 33vw;
         margin-right: 15px;
         padding: 10px 0;
+    }
+}
+
+@keyframes buttonScale {
+    0% {
+        scale: 100%;
+    }
+
+    100% {
+        scale: 120%;
     }
 }
