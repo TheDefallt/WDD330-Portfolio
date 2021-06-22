@@ -1,6 +1,10 @@
 const migraineButton = document.getElementById('migraineBtn');
+
 const currentTemp_elmnt = document.getElementById('currentTemp');
 const currentPressure_elmnt = document.getElementById('currentPressure');
+
+const hourTemp_elmnt = document.getElementById('hourTemp');
+const hourPressure_elmnt = document.getElementById('hourPressure');
 
 migraineButton.addEventListener('click', startWeatherFetch);
 
@@ -20,6 +24,15 @@ function fetchWeatherByCoord (pos) {
         console.log(data);
         currentTemp_elmnt.textContent = kelvinToFaherenheit(data.current.temp);
         currentPressure_elmnt.textContent = pascalToMercury(data.current.pressure);
+
+        data.hourly.forEach(element => {
+            console.log(startTime - element.dt)
+            if(startTime - element.dt <= 3600){
+                console.log(element);
+                
+            }
+        });
+        //hourPressure_elmnt.textContent = kelvinToFaherenheit(data.hourly) - kelvinToFaherenheit(data.current.temp)
     });
 }
 
