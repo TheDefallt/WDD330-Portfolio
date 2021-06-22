@@ -38,6 +38,10 @@ const links = [
     {
         label: "Block 2 Proposal",
         url: "proposal.html"
+    },
+    {
+        label: "Block 2 Project",
+        url: "index.html"
     }
 ];
 
