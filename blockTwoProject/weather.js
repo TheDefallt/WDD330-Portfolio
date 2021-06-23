@@ -16,23 +16,46 @@ function fetchWeatherByCoord (pos) {
     let lat = pos.coords.latitude;
     let long = pos.coords.longitude;
 
-    let startTime = ~~(Date.now() / 1000) - 1440 * 60;
+    let adjustedNow = ~~(Date.now() / 1000);
+    let pastDay = adjustedNow - 1440 * 60;
+    console.log(adjustedNow);
 
-    fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${long}&dt=${startTime}&appid=51c68784f1251d893077cc4f52143c83`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=51c68784f1251d893077cc4f52143c83`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
         currentTemp_elmnt.textContent = kelvinToFaherenheit(data.current.temp);
         currentPressure_elmnt.textContent = pascalToMercury(data.current.pressure);
 
+        let pastHourData = "";
+
         data.hourly.forEach(element => {
-            console.log(startTime - element.dt)
-            if(startTime - element.dt <= 3600){
-                console.log(element);
-                
+            if(adjustedNow - element.dt <= 7200){
+                pastHourData = element;
             }
         });
-        //hourPressure_elmnt.textContent = kelvinToFaherenheit(data.hourly) - kelvinToFaherenheit(data.current.temp)
+
+        console.log(pastHourData);
+        hourTemp_elmnt.textContent = kelvinToFaherenheit(pastHourData.temp); //- kelvinToFaherenheit(data.current.temp);
+    });
+
+    fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${long}&dt=${pastDay}&appid=51c68784f1251d893077cc4f52143c83`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        currentTemp_elmnt.textContent = kelvinToFaherenheit(data.current.temp);
+        currentPressure_elmnt.textContent = pascalToMercury(data.current.pressure);
+
+        let pastHourData = "";
+
+        data.hourly.forEach(element => {
+            if(adjustedNow - element.dt <= 7200){
+                pastHourData = element;
+            }
+        });
+
+        console.log(pastHourData);
+        hourTemp_elmnt.textContent = kelvinToFaherenheit(pastHourData.temp); //- kelvinToFaherenheit(data.current.temp);
     });
 }
 
