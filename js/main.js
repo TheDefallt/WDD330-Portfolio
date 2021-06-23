@@ -41,7 +41,7 @@ const links = [
     },
     {
         label: "Block 2 Project",
-        url: "index.html"
+        url: "blockTwoProject/index.html"
     }
 ];
 
