@@ -6,6 +6,9 @@ const currentPressure_elmnt = document.getElementById('currentPressure');
 const hourTemp_elmnt = document.getElementById('hourTemp');
 const hourPressure_elmnt = document.getElementById('hourPressure');
 
+const threeTemp_elmnt = document.getElementById('threeTemp');
+const threePressure_elmnt = document.getElementById('threePressure');
+
 migraineButton.addEventListener('click', startWeatherFetch);
 
 function startWeatherFetch(){
@@ -17,21 +20,8 @@ function fetchWeatherByCoord (pos) {
     let long = pos.coords.longitude;
 
     let adjustedNow = ~~(Date.now() / 1000);
-    let pastDay = adjustedNow - 1440 * 60;
 
     console.log("Requested Now: " + adjustedNow);
-
-    let currentData = "";
-    let pastData = "";
-
-    // fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=51c68784f1251d893077cc4f52143c83`)
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data);
-    //     currentData = data;
-    //     currentTemp_elmnt.textContent = kelvinToFaherenheit(data.main.temp);
-    //     currentPressure_elmnt.textContent = pascalToMercury(data.main.pressure);
-    // });
 
     fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${long}&dt=${adjustedNow}&appid=51c68784f1251d893077cc4f52143c83`)
     .then(response => response.json())
@@ -51,9 +41,22 @@ function fetchWeatherByCoord (pos) {
             }
         });
 
-        console.log(pastHourData);
+        // console.log(pastHourData);
         hourTemp_elmnt.textContent = `Previous Temp:${kelvinToFaherenheit(pastHourData.temp)},  
         Difference:${kelvinToFaherenheit(data.current.temp) - kelvinToFaherenheit(pastHourData.temp)}`;
+
+        let threeHourData = "";
+
+        data.hourly.forEach(element => {
+            console.log(adjustedNow - element.dt);
+            if(adjustedNow - element.dt <= 10800 && adjustedNow - element.dt >= 7200){
+                threeHourData = element;
+                // console.log(element);
+            }
+        });
+
+        threeTemp_elmnt.textContent = `Previous Temp:${kelvinToFaherenheit(threeHourData.temp)},  
+        Difference:${kelvinToFaherenheit(data.current.temp) - kelvinToFaherenheit(threeHourData.temp)}`;
     });
 }
 
