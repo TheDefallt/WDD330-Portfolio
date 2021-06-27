@@ -8,9 +8,18 @@
 <body>
     <h1>Notes</h1>
 
-    <h2>Validating forms</h2>
+    <h2>Client-side for validation</h2>
     <ul>
-
+        <li>
+            Never trust data passed to your server from a client. Even if validation is working
+            Clients can still alter network traffic.
+        </li>
+        <li>
+            HTML5 form controls come with basic properties like "required" that make sure a neccessary
+            field is not left empty."Pattern" uses regular expressions to define which characters are allowed
+            or not, and in what order.
+        </li>
+        
     </ul>
 
     <h2>Using Fetch</h2>

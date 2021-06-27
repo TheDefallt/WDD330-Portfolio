@@ -1,6 +1,6 @@
 import { getLocation } from './utilities.js';
-import Quake from './Quake.js';
-import QuakesView from './QuakesView.js';
+import Quake from './quake.js';
+import QuakesView from './quakeView.js';
 
 // Quake controller
 export default class QuakesController {
@@ -17,20 +17,21 @@ export default class QuakesController {
     this.quakes = new Quake();
     this.quakesView = new QuakesView();
   }
-  async init() {
+  async init(radius) {
     // use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius()
     this.parentElement = document.querySelector(this.parent);
     await this.initPos();
-    this.getQuakesByRadius(100);
+    this.getQuakesByRadius(radius);
   }
-  async initPos() {
+  async initPos(radius) {
     // if a position has not been set
     if (this.position.lat === 0) {
       try {
         // try to get the position using getLocation()
-        
+        const location = await getLocation(); 
         // if we get the location back then set the latitude and longitude into this.position
-        
+          this.position.lat = location.coords.latitude;
+          this.position.lon = location.coords.longitude;  
       } catch (error) {
         console.log(error);
       }
@@ -44,7 +45,7 @@ export default class QuakesController {
     // get the list of quakes in the specified radius of the location
     const quakeList = await this.quakes.getEarthQuakesByRadius(
       this.position,
-      100
+      radius
     );
     // render the list to html
     this.quakesView.renderQuakeList(quakeList, this.parentElement);
