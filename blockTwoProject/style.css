@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn+SC&display=swap');
+
+:root {
+    --base-color: #d2eeed;
+    --light-color: #eff9fa;
+    --dark-color: #43B1AC;
+    --light-text: #FFFFFF;
+    --dark-text: #0E0A06;
+}
+
+body {
+    background-color: var(--base-color);
+}
+
+li {
+    /* list-style-type: none; */
+    color: var(--dark-text);
+    font-family: 'Spartan', sans-serif;
+    font-size: 18px;
+}
+
+.data-card {
+    background-color: var(--light-color);
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.data-card h2 {
+    width: 100%;
+    margin: 0;
+    background-color: var(--dark-color);
+    border-radius: 15px 15px 0 0;
+    padding-left: 10px;
+    color: var(--light-text);
+    font-family: 'Vollkorn SC', serif;
+    font-size: 30px;
+    word-spacing: 5px;
+}
+
+.data-card div {
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+    color: var(--dark-text);
+    font-family: 'Spartan', sans-serif;
+    font-size: 58px;
+}
