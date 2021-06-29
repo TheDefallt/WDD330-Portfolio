@@ -1,21 +1,6 @@
 const migraineButton = document.getElementById('migraineBtn');
 const hourContainer = document.getElementById('hourContainer');
 
-// const currentTemp_elmnt = document.getElementById('currentTemp');
-// const currentPressure_elmnt = document.getElementById('currentPressure');
-
-// const hourTemp_elmnt = document.getElementById('hourTemp');
-// const hourPressure_elmnt = document.getElementById('hourPressure');
-
-// const threeTemp_elmnt = document.getElementById('threeTemp');
-// const threePressure_elmnt = document.getElementById('threePressure');
-
-// const sixTemp_elmnt = document.getElementById('sixTemp');
-// const sixPressure_elmnt = document.getElementById('sixPressure');
-
-// const twelveTemp_elmnt = document.getElementById('twelveTemp');
-// const twelvePressure_elmnt = document.getElementById('twelvePressure');
-
 migraineButton.addEventListener('click', startWeatherFetch);
 
 function startWeatherFetch(){
@@ -42,8 +27,6 @@ function fetchWeatherByCoord (pos) {
             <div>${pascalToMercury(data.current.pressure)}in.</div>
         </div>
         `;
-        // currentTemp_elmnt.innerHTML = `${kelvinToFaherenheit(data.current.temp)}&#176F`;
-        // currentPressure_elmnt.innerHTML = `${pascalToMercury(data.current.pressure)}in.`;
 
         /*---Hour Looper---*/
         console.log(data.hourly[0].dt);
@@ -59,16 +42,6 @@ function fetchWeatherByCoord (pos) {
             `;
         }
     })
-}
-
-function fetchWeatherByCityState() {
-    //Get values from page elements
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state}&appid=51c68784f1251d893077cc4f52143c83`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        currentTemp_elmnt.textContent = kelvinToFaherenheit(data.main.temp);
-    });
 }
 
 function kelvinToFaherenheit(temp){
