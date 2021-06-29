@@ -1,8 +1,8 @@
 const migraineButton = document.getElementById('migraineBtn');
 const hourContainer = document.getElementById('hourContainer');
 
-const currentTemp_elmnt = document.getElementById('currentTemp');
-const currentPressure_elmnt = document.getElementById('currentPressure');
+// const currentTemp_elmnt = document.getElementById('currentTemp');
+// const currentPressure_elmnt = document.getElementById('currentPressure');
 
 // const hourTemp_elmnt = document.getElementById('hourTemp');
 // const hourPressure_elmnt = document.getElementById('hourPressure');
@@ -35,15 +35,22 @@ function fetchWeatherByCoord (pos) {
     .then(data => {
 
         /*---Current Data---*/
-        currentTemp_elmnt.innerHTML = `${kelvinToFaherenheit(data.current.temp)}&#176F`;
-        currentPressure_elmnt.innerHTML = `${pascalToMercury(data.current.pressure)}in.`;
+        hourContainer.innerHTML += `
+        <div class="data-card">
+            <h2>Current Conditions ${new Date(data.current.dt * 1000).toLocaleTimeString()}</h2>
+            <div>${kelvinToFaherenheit(data.current.temp)}&#176F</div>
+            <div>${pascalToMercury(data.current.pressure)}in.</div>
+        </div>
+        `;
+        // currentTemp_elmnt.innerHTML = `${kelvinToFaherenheit(data.current.temp)}&#176F`;
+        // currentPressure_elmnt.innerHTML = `${pascalToMercury(data.current.pressure)}in.`;
 
         /*---Hour Looper---*/
         console.log(data.hourly[0].dt);
         for(let i=data.hourly.length - 1; i > 0; i--){
             hourContainer.innerHTML += `
             <div class="data-card">
-                <h2>${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
+                <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
                 <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
                 <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
                 <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
