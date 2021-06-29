@@ -4,7 +4,7 @@ const hourContainer = document.getElementById('hourContainer');
 migraineButton.addEventListener('click', startWeatherFetch);
 
 function startWeatherFetch(){
-    window.navigator.geolocation.getCurrentPosition(fetchWeatherByCoord, fetchWeatherByCityState);
+    window.navigator.geolocation.getCurrentPosition(fetchWeatherByCoord);
 }
 
 function fetchWeatherByCoord (pos) {
