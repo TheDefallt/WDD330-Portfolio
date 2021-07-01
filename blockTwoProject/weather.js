@@ -60,7 +60,7 @@ function fetchWeatherByCoord (pos) {
             
             card.innerHTML += `
             <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
-            <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
+            <div>${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
             <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
             `;
 
