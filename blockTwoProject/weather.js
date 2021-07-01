@@ -1,13 +1,20 @@
 const migraineButton = document.getElementById('migraineBtn');
 const hourContainer = document.getElementById('hourContainer');
 
+let weatherData = [];
+
+let presElements = [];
+let tempElements = [];
+
 migraineButton.addEventListener('click', startWeatherFetch);
 
+/*---Gather user's location and start weather fetch---*/
 function startWeatherFetch(){
     window.navigator.geolocation.getCurrentPosition(fetchWeatherByCoord);
     document.getElementById('btnContainer').classList.add("hide");
 }
 
+/*---Fetch weather from OpenWeather API and render page---*/
 function fetchWeatherByCoord (pos) {
     let lat = pos.coords.latitude;
     let long = pos.coords.longitude;
@@ -19,6 +26,8 @@ function fetchWeatherByCoord (pos) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${long}&dt=${adjustedNow}&appid=51c68784f1251d893077cc4f52143c83`)
     .then(response => response.json())
     .then(data => {
+
+        weatherData = data;
 
         /*---Current Data---*/
         hourContainer.innerHTML += `
@@ -32,9 +41,9 @@ function fetchWeatherByCoord (pos) {
         /*---Add radio buttons---*/
         hourContainer.innerHTML += `
         <h2>Compare To:</h2>
-        <input type="radio" value="Now">
+        <input type="radio" value="Now" name="compareRadios" id="radioNow">
         <label for="now">Now</label>
-        <input type="radio" value="HourByHour">
+        <input type="radio" value="HourByHour" name="compareRadios" id="radioHour">
         <label for="hourbyhour">Hour-by-Hour</label>
         `;
         
@@ -42,27 +51,46 @@ function fetchWeatherByCoord (pos) {
         hourContainer.innerHTML += `
         <button class="resetBtn" id="resetBtn">Reset</button>
         `;
-
+        
         /*---Hour Looper---*/
         for(let i=data.hourly.length - 1; i > 0; i--){
-            hourContainer.innerHTML += `
-            <div class="data-card">
-                <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
-                <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
-                <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
-                <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
-                <div>${pressureDifference(data.current.pressure, data.hourly[i].pressure)}in.</div>
-            </div>
+            
+            let card = document.createElement("div");
+            card.classList.add("data-card");
+            
+            card.innerHTML += `
+            <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
+            <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
+            <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
             `;
+
+            let tempElement = document.createElement("div");
+            card.appendChild(tempElement);
+            tempElements.unshift(tempElement);
+
+            let presElement = document.createElement("div");
+            card.appendChild(presElement);
+            presElements.unshift(presElement);
+
+            hourContainer.appendChild(card);
+
+            // hourContainer.innerHTML += `
+            // <div class="data-card">
+            //     <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
+            //     <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
+            //     <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
+            //     <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
+            //     <div>${pressureDifference(data.current.pressure, data.hourly[i].pressure)}in.</div>
+            // </div>
+            // `;
         }
-        // callback(hourLoopNow);
     })
     .then( () => {
+        document.getElementById('radioHour').addEventListener('change', renderHourNumbers(weatherData));
+        document.getElementById('radioNow').addEventListener('change', renderNowNumbers(weatherData));
         document.getElementById('resetBtn').addEventListener('click', reset);
     })
 }
-
-
 
 function kelvinToFaherenheit(temp){
     return Math.trunc((temp - 273.15) * 1.8 + 32);
@@ -80,35 +108,26 @@ function pressureDifference(currentPressure, pastPressure){
     return (pascalToMercury(currentPressure) - pascalToMercury(pastPressure)).toFixed(2);
 }
 
-function hourLoopNow(data) {
-    for(let i=data.hourly.length - 1; i > 0; i--){
-        hourContainer.innerHTML += `
-        <div class="data-card">
-            <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
-            <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
-            <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
-            <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
-            <div>${pressureDifference(data.current.pressure, data.hourly[i].pressure)}in.</div>
-        </div>
-        `;
+function renderNowNumbers(data){
+    console.log('Now');
+    for(let i=0; i < tempElements.length; i++){
+        tempElements[i].innerHTML = `Diff: ${tempDifference(data.current.temp, data.hourly[i + 1].temp)}&#176F`;
+        presElements[i].innerHTML = `${pressureDifference(data.current.pressure, data.hourly[i + 1].pressure)}in.`;
     }
 }
 
-function hourLoopByHour(data) {
-    for(let i=data.hourly.length - 1; i > 0; i--){
-        hourContainer.innerHTML += `
-        <div class="data-card">
-            <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
-            <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
-            <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
-            <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
-            <div>${pressureDifference(data.current.pressure, data.hourly[i].pressure)}in.</div>
-        </div>
-        `;
+function renderHourNumbers(data){
+    console.log('Hour');
+    for(let i=0; i < tempElements.length; i++){
+        tempElements[i].innerHTML = `Diff: ${tempDifference(data.hourly[i + 1].temp, data.hourly[i].temp)}&#176F`;
+        presElements[i].innerHTML = `${pressureDifference(data.hourly[i + 1].pressure, data.hourly[i].pressure)}in.`;
     }
 }
 
 function reset(){
     hourContainer.innerHTML = ``;
+    weatherData = [];
+    presElements = [];
+    tempElements = [];
     document.getElementById("btnContainer").classList.remove("hide");
 }
