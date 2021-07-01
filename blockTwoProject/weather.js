@@ -41,7 +41,7 @@ function fetchWeatherByCoord (pos) {
         /*---Add radio buttons---*/
         hourContainer.innerHTML += `
         <h2>Compare To:</h2>
-        <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)">
+        <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)" checked>
         <label for="now">Now</label>
         <input type="radio" value="HourByHour" name="compareRadios" id="radioHour" onchange="renderNumbers(this.value, weatherData)">
         <label for="hourbyhour">Hour-by-Hour</label>
@@ -73,16 +73,6 @@ function fetchWeatherByCoord (pos) {
             presElements.unshift(presElement);
 
             hourContainer.appendChild(card);
-
-            // hourContainer.innerHTML += `
-            // <div class="data-card">
-            //     <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
-            //     <div>Meas: ${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
-            //     <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
-            //     <div>Diff: ${tempDifference(data.current.temp, data.hourly[i].temp)}&#176F</div>
-            //     <div>${pressureDifference(data.current.pressure, data.hourly[i].pressure)}in.</div>
-            // </div>
-            // `;
         }
     })
     .then( () => {
