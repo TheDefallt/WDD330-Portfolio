@@ -41,9 +41,9 @@ function fetchWeatherByCoord (pos) {
         /*---Add radio buttons---*/
         hourContainer.innerHTML += `
         <h2>Compare To:</h2>
-        <input type="radio" value="Now" name="compareRadios" id="radioNow">
+        <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)">
         <label for="now">Now</label>
-        <input type="radio" value="HourByHour" name="compareRadios" id="radioHour">
+        <input type="radio" value="HourByHour" name="compareRadios" id="radioHour" onchange="renderNumbers(this.value, weatherData)">
         <label for="hourbyhour">Hour-by-Hour</label>
         `;
         
@@ -86,8 +86,7 @@ function fetchWeatherByCoord (pos) {
         }
     })
     .then( () => {
-        document.getElementById('radioHour').addEventListener('change', renderHourNumbers(weatherData));
-        document.getElementById('radioNow').addEventListener('change', renderNowNumbers(weatherData));
+        renderNumbers('Now', weatherData);
         document.getElementById('resetBtn').addEventListener('click', reset);
     })
 }
@@ -108,19 +107,20 @@ function pressureDifference(currentPressure, pastPressure){
     return (pascalToMercury(currentPressure) - pascalToMercury(pastPressure)).toFixed(2);
 }
 
-function renderNowNumbers(data){
-    console.log('Now');
-    for(let i=0; i < tempElements.length; i++){
-        tempElements[i].innerHTML = `Diff: ${tempDifference(data.current.temp, data.hourly[i + 1].temp)}&#176F`;
-        presElements[i].innerHTML = `${pressureDifference(data.current.pressure, data.hourly[i + 1].pressure)}in.`;
-    }
-}
-
-function renderHourNumbers(data){
-    console.log('Hour');
-    for(let i=0; i < tempElements.length; i++){
-        tempElements[i].innerHTML = `Diff: ${tempDifference(data.hourly[i + 1].temp, data.hourly[i].temp)}&#176F`;
-        presElements[i].innerHTML = `${pressureDifference(data.hourly[i + 1].pressure, data.hourly[i].pressure)}in.`;
+function renderNumbers(value, data){
+    switch (value){
+    case `Now`:
+        for(let i=0; i < tempElements.length; i++){
+            tempElements[i].innerHTML = `Diff: ${tempDifference(data.current.temp, data.hourly[i + 1].temp)}&#176F`;
+            presElements[i].innerHTML = `${pressureDifference(data.current.pressure, data.hourly[i + 1].pressure)}in.`;
+        }
+        break;
+    case `HourByHour`:
+        for(let i=0; i < tempElements.length; i++){
+            tempElements[i].innerHTML = `Diff: ${tempDifference(data.hourly[i + 1].temp, data.hourly[i].temp)}&#176F`;
+            presElements[i].innerHTML = `${pressureDifference(data.hourly[i + 1].pressure, data.hourly[i].pressure)}in.`;
+        }
+        break;
     }
 }
 
