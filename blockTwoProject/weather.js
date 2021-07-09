@@ -23,8 +23,6 @@ function fetchWeatherByCoord (pos) {
 
     let adjustedNow = Math.floor(Date.now() / 1000);
 
-    console.log(adjustedNow);
-
     fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${long}&dt=${adjustedNow}&appid=51c68784f1251d893077cc4f52143c83`)
     .then(response => response.json())
     .then(data => {
