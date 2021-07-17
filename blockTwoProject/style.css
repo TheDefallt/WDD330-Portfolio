@@ -79,3 +79,27 @@ li {
 .hide {
     display: none;
 }
+
+.compare-h2, .compare-label{
+    color: var(--dark-text);
+}
+
+.compare-label{
+    font-family: 'Spartan', sans-serif;
+}
+
+.compare-h2{
+    font-family: 'Vollkorn SC', serif;
+    margin: 0 5px;
+}
+
+.reset-btn {
+    margin-left: 15px;
+    font-family: 'Vollkorn SC', serif;
+    background-color: var(--dark-color);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    padding: 5px 15px;
+}

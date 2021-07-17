@@ -32,7 +32,7 @@ function fetchWeatherByCoord (pos) {
         /*---Current Data---*/
         hourContainer.innerHTML += `
         <div class="data-card">
-            <h2>Current Conditions ${new Date(data.current.dt * 1000).toLocaleTimeString()}</h2>
+            <h2>${new Date(data.current.dt * 1000).toLocaleTimeString()} (Current)</h2>
             <div>${kelvinToFaherenheit(data.current.temp)}&#176F</div>
             <div>${pascalToMercury(data.current.pressure)}in.</div>
         </div>
@@ -40,16 +40,16 @@ function fetchWeatherByCoord (pos) {
 
         /*---Add radio buttons---*/
         hourContainer.innerHTML += `
-        <h2>Compare To:</h2>
-        <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)" checked>
-        <label for="now">Now</label>
-        <input type="radio" value="HourByHour" name="compareRadios" id="radioHour" onchange="renderNumbers(this.value, weatherData)">
-        <label for="hourbyhour">Hour-by-Hour</label>
+        <h2 class="compare-h2">Compare To:</h2>
+        <input type="radio" value="HourByHour" name="compareRadios" id="radioHour" onchange="renderNumbers(this.value, weatherData)" checked>
+        <label class="compare-label" for="hourbyhour">Hour-by-Hour</label>
+        <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)">
+        <label class="compare-label" for="now">Now</label>
         `;
         
         /*---Add Reset Button---*/
         hourContainer.innerHTML += `
-        <button class="resetBtn" id="resetBtn">Reset</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
         `;
         
         /*---Hour Looper---*/
@@ -76,7 +76,7 @@ function fetchWeatherByCoord (pos) {
         }
     })
     .then( () => {
-        renderNumbers('Now', weatherData);
+        renderNumbers('HourByHour', weatherData);
         document.getElementById('resetBtn').addEventListener('click', reset);
     })
 }
