@@ -4,7 +4,7 @@
 :root {
     --base-color: #d2eeed;
     --light-color: #eff9fa;
-    --dark-color: #43B1AC;
+    --dark-color: #389590;
     --light-text: #FFFFFF;
     --dark-text: #0E0A06;
 }
@@ -67,7 +67,7 @@ li {
 
 .migraineBtn {
     background-color: var(--dark-color);
-    color: var(--base-color);
+    color: white;
     font-family: 'Spartan', sans-serif;
     font-size: 25px;
     border-radius: 5px;
