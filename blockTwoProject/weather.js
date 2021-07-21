@@ -1,5 +1,6 @@
 const migraineButton = document.getElementById('migraineBtn');
 const hourContainer = document.getElementById('hourContainer');
+const currentContainer = document.getElementById('currentContainer');
 
 let weatherData = [];
 
@@ -19,6 +20,7 @@ function fetchWeatherByCoord (pos) {
     let lat = pos.coords.latitude;
     let long = pos.coords.longitude;
 
+    currentContainer.innerHTML = '';
     hourContainer.innerHTML = ``;
 
     let adjustedNow = Math.floor(Date.now() / 1000) - 60;
@@ -30,25 +32,27 @@ function fetchWeatherByCoord (pos) {
         weatherData = data;
 
         /*---Current Data---*/
-        hourContainer.innerHTML += `
-        <div class="data-card">
-            <h2>${new Date(data.current.dt * 1000).toLocaleTimeString()} (Current)</h2>
+        currentContainer.innerHTML += `
+        <div class="data-card data-heading">
+            <h1>${new Date(data.current.dt * 1000).toLocaleTimeString()} (Current)</h1>
             <div>${kelvinToFaherenheit(data.current.temp)}&#176F</div>
             <div>${pascalToMercury(data.current.pressure)}in.</div>
         </div>
         `;
 
         /*---Add radio buttons---*/
-        hourContainer.innerHTML += `
-        <h2 class="compare-h2">Compare To:</h2>
+        currentContainer.innerHTML += `
+        <fieldset class="compare">
+        <legend>Compare To:</legend>
         <input type="radio" value="HourByHour" name="compareRadios" id="radioHour" onchange="renderNumbers(this.value, weatherData)" checked>
-        <label class="compare-label" for="hourbyhour">Hour-by-Hour</label>
+        <label class="compare-label" for="radioHour">Hour-by-Hour</label>
         <input type="radio" value="Now" name="compareRadios" id="radioNow" onchange="renderNumbers(this.value, weatherData)">
-        <label class="compare-label" for="now">Now</label>
+        <label class="compare-label" for="radioNow">Now</label>
+        </fieldset>
         `;
         
         /*---Add Reset Button---*/
-        hourContainer.innerHTML += `
+        currentContainer.innerHTML += `
         <button class="reset-btn" id="resetBtn">Reset</button>
         `;
         
@@ -59,7 +63,7 @@ function fetchWeatherByCoord (pos) {
             card.classList.add("data-card");
             
             card.innerHTML += `
-            <h2>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h2>
+            <h1>Conditions at: ${new Date(data.hourly[i].dt * 1000).toLocaleTimeString()}</h1>
             <div>${kelvinToFaherenheit(data.hourly[i].temp)}&#176F</div>
             <div>${pascalToMercury(data.hourly[i].pressure)}in.</div>
             `;
@@ -115,6 +119,7 @@ function renderNumbers(value, data){
 }
 
 function reset(){
+    currentContainer.innerHTML = ``;
     hourContainer.innerHTML = ``;
     weatherData = [];
     presElements = [];

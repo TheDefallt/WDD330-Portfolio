@@ -4,8 +4,7 @@
 :root {
     --base-color: #d2eeed;
     --light-color: #eff9fa;
-    --dark-color: #389590;
-    --light-text: #FFFFFF;
+    --dark-color: #2d7874;
     --dark-text: #0E0A06;
 }
 
@@ -32,13 +31,13 @@ li {
     border-right: var(--dark-text) solid 1.5px;
 }
 
-.data-card h2 {
+.data-card h1 {
     width: 100%;
     margin: 0;
     background-color: var(--dark-color);
     border-radius: 15px 15px 0 0;
-    padding-left: 10px;
-    color: var(--light-text);
+    padding: 10px;
+    color: white;
     font-family: 'Vollkorn SC', serif;
     font-size: 30px;
     word-spacing: 5px;
@@ -81,7 +80,7 @@ li {
     display: none;
 }
 
-.compare-h2, .compare-label{
+.compare-h1, .compare-label{
     color: var(--dark-text);
 }
 
@@ -89,13 +88,12 @@ li {
     font-family: 'Spartan', sans-serif;
 }
 
-.compare-h2{
+.compare-h1{
     font-family: 'Vollkorn SC', serif;
     margin: 0 5px;
 }
 
 .reset-btn {
-    margin-left: 15px;
     font-family: 'Vollkorn SC', serif;
     background-color: var(--dark-color);
     color: white;
@@ -105,4 +103,33 @@ li {
     padding: 5px 15px;
 }
 
+.compare {
+    border-radius: 5px;
+    border: var(--dark-color) solid 1.5px;
+    margin: 20px 0 20px 0;
+}
+
+.compare legend {
+    font-family: 'Vollkorn SC', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--dark-color);
+}
+
 /* Make a desktop version */
+@media only screen and (min-width: 1400px){
+    .compare {
+        max-width: 25vw;
+    }
+
+    .hourContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hourContainer .data-card{
+        margin-right: 20px;
+        max-width: 30vw;
+    }
+}
